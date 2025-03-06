@@ -1,36 +1,94 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Full-Stack Application with NEXT.js, MongoDB, TypeScript, and Express
 
-## Getting Started
+## Tech Stack
 
-First, run the development server:
+### Frontend:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- **NEXT.js** (React framework)
+- **TypeScript**
+- **ShadCN** (UI Components)
+
+### Backend:
+
+- **Express.js** (Node.js framework)
+- **MongoDB** (Database)
+
+---
+
+## Project Overview
+
+This project is a **full-stack application** that provides CRUD (Create, Read, Update, Delete) functionalities through a dynamic table. The application is designed with a **modern UI** using ShadCN and ensures **real-time data updates** from MongoDB.
+
+---
+
+## Features
+
+### ✅ Table with CRUD Functionalities
+
+- Display data dynamically in a table.
+- Perform **Create, Read, Update, and Delete (CRUD)** operations on table entries.
+
+### ✅ Data Handling
+
+- Fetch data from **MongoDB** and display it in the table.
+- Ensure **real-time updates** when CRUD operations are performed.
+
+### ✅ Sorting and Filtering
+
+- Implement sorting options to efficiently organize data.
+- Include a **search/filter** functionality for better accessibility.
+
+### ✅ Dialog Input for Actions
+
+- Use **modals (dialogs)** for adding, updating, and deleting records.
+- Implement **form validation** for data integrity.
+
+### ✅ Responsiveness
+
+- Ensure a **fully responsive UI** that adapts to different screen sizes.
+- Utilize **ShadCN components** for an accessible and modern design.
+
+---
+
+## Expected Deliverables
+
+- **Next.js frontend** with a ShadCN UI-based table.
+- **Express.js backend** connected to MongoDB for data operations.
+- **Sorting and filtering** features in the table.
+- **CRUD functionality** with modals for input.
+- **Fully responsive UI** for seamless user experience.
+
+---
+
+## Setup Instructions
+
+### 1️⃣ Clone the Repository
+
+```sh
+git https://github.com/UmerBaig123/gamma_app.git
+cd gamma
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2️⃣ Install Dependencies
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```sh
+npm install
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 3️⃣ Set Up Environment Variables
 
-## Learn More
+Create a `.env` file in the root directory and add:
 
-To learn more about Next.js, take a look at the following resources:
+```sh
+MONGO_URI=your-mongodb-connection-string/database
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 4️⃣ Start the Application
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```sh
+npm run dev
+```
 
-## Deploy on Vercel
+The app will be available at: **`http://localhost:5000`**
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+--
