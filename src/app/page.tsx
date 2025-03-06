@@ -87,6 +87,7 @@ export default function Home() {
                   .post("/trades", data)
                   .then((response) => {
                     console.log("Trade added successfully:", response.data);
+                    setError("");
                     setRowData((prevData: []) => [...prevData, response.data]);
                   })
                   .catch((error) => {
@@ -102,6 +103,7 @@ export default function Home() {
                   setError("Please select a row to delete");
                   return;
                 }
+                setError("");
                 selectedRows?.forEach((row) => {
                   setRowData((prevData: []) =>
                     prevData.filter((data: any) => data._id !== row._id)
@@ -124,6 +126,7 @@ export default function Home() {
                   .put(`/trades/${data._id}`, data)
                   .then((response) => {
                     console.log("Trade edited successfully:", response.data);
+                    setError("");
                     setRowData((prevData: []) =>
                       prevData.map((d: any) =>
                         d._id === response.data._id ? response.data : d
