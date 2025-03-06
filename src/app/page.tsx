@@ -140,6 +140,7 @@ export default function Home() {
             />
           </columnsContext.Provider>
         </div>
+        {error && <AlertDestructive message={error} />}
         <div
           className="aggrid-container"
           style={{ width: "90vw", height: "500px" }}
@@ -168,7 +169,6 @@ export default function Home() {
               },
             }}
           />
-          {error && <AlertDestructive message={error} />}
         </div>
       </main>
     </div>
