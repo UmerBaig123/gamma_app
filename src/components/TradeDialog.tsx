@@ -122,7 +122,9 @@ export function AddEditDialog({
                 setError(Object.values(errors).join(" "));
                 return;
               }
+
               onSubmit(formData);
+              setFormData({});
               setOpen(false);
             }}
           >
