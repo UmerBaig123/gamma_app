@@ -12,6 +12,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { JSX, useContext, useEffect, useState } from "react";
 import { columnsContext } from "@/app/page";
+import { AlertDestructive } from "./ErrorAlert";
 export function AddEditDialog({
   dialog_title,
   onSubmit,
@@ -26,7 +27,34 @@ export function AddEditDialog({
   fData?: object;
 }) {
   const columns: Array<any> = useContext(columnsContext) || [];
+  const [error, setError] = useState<string>("");
   const [formData, setFormData] = useState<{ [key: string]: any }>(fData || {});
+  function validateForm(data: any) {
+    const errors: { [key: string]: string } = {};
+
+    if (!data.ticker || typeof data.ticker !== "string") {
+      errors.ticker = "Ticker is required and must be a string.";
+    }
+    if (!data.timestamp || isNaN(Date.parse(data.timestamp))) {
+      errors.timestamp = "Invalid timestamp format.";
+    }
+    if (isNaN(data.ask_price) || data.ask_price <= 0) {
+      errors.ask_price = "Ask Price must be a positive number.";
+    }
+    if (isNaN(data.bid_price) || data.bid_price <= 0) {
+      errors.bid_price = "Bid Price must be a positive number.";
+    }
+    if (isNaN(data.close_price) || data.close_price <= 0) {
+      errors.close_price = "Close Price must be a positive number.";
+    }
+    if (isNaN(data.volume) || data.volume < 0) {
+      errors.volume = "Volume must be a non-negative number.";
+    }
+    if (data.vva !== undefined && isNaN(data.vva)) {
+      errors.vva = "VVA must be a number.";
+    }
+    return Object.keys(errors).length > 0 ? errors : null;
+  }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
@@ -67,6 +95,7 @@ export function AddEditDialog({
                 />
               ) : (
                 <Input
+                  type={col.field === "ticker" ? "text" : "number"}
                   id={col.field}
                   className="col-span-3"
                   value={formData[col.field] || ""}
@@ -76,10 +105,23 @@ export function AddEditDialog({
             </div>
           ))}
         </div>
-        <DialogFooter>
+        <DialogFooter
+          style={{
+            display: "flex",
+            gap: "1rem",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
+        >
+          {error && <AlertDestructive message={error} />}
           <Button
             type="submit"
             onClick={() => {
+              const errors = validateForm(formData);
+              if (errors) {
+                setError(Object.values(errors).join(" "));
+                return;
+              }
               onSubmit(formData);
               setOpen(false);
             }}
